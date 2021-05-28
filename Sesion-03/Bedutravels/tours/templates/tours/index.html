@@ -1,0 +1,14 @@
+<a href="/zonas/">Zonas</a> | <a href="/login/">Entrar</a>
+<hr />
+<h1>Página de inicio para mostrar la lista de Tours</h1>
+<hr />
+{% for tour in tours %}
+<div class="tour">
+    <h3>{{ tour.nombre }}</h3>
+    <ul>
+        <li>Agencia: {{ tour.operador }}</li>
+        <li>Tipo de tour: {{ tour.tipoDeTour }}</li>
+        <li>Origen: {{ tour.zonaSalida }}</li>
+        <li>Destino: {{ tour.zonaLlegada.nombre }}</li>
+</div>
+{% endfor %}
