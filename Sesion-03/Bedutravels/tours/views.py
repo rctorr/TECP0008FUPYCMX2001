@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Tour
+from .models import Tour, Zona
 
 # Create your views here.
 def index(request):
@@ -8,12 +8,18 @@ def index(request):
     # Regresa un QuerySet es una lista de objetos de tipo Tour
     lista_tours = Tour.objects.all()
 
-    return render(request, "tours/index.html", {"tours":lista_tours})
+    return render(request, "tours/index.html", {"tours": lista_tours})
+
 
 def zonas(request):
     """ Atender la petición GET /zonas/ """
+    zonas = Zona.objects.all()
+    contexto = {
+        "zonas": zonas,
+    }
 
-    return render(request, "tours/zonas.html")
+    return render(request, "tours/zonas.html", contexto)
+
 
 def login(request):
     """
