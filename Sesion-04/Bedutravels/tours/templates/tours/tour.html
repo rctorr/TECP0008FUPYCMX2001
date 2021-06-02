@@ -1,0 +1,32 @@
+<a href="/zonas/">Zonas</a> | 
+{% if user.is_authenticated %}
+    {{ user.username }} <a href="/accounts/logout/">Salir</a>
+{% else %}
+    <a href="/accounts/login/">Entrar</a>
+{% endif %}
+
+<hr />
+<h1>Detalle del tour {{ tour.id }}</h1>
+<hr />
+<div class="tour">
+    <h3>{{ tour.nombre }}</h3>
+    <p>{{ tour.descripcion }}</p>
+    <ul>
+        <li>Link: {{ tour.slug }}</li>
+        <li>Operador: {{ tour.operador }}</li>
+        <li>Tipo de tour: {{ tour.tipoDeTour }}</li>
+        <li>Origen: {{ tour.zonaSalida }}</li>
+        <li>Destino: {{ tour.zonaLlegada.nombre }}</li>
+        <li>Link a imágen: {{ tour.img }}</li>
+    </ul>
+</div>
+<hr />
+{% if es_editor %}
+<div class="menu-inferior">
+    <a href="/tour/{{ tour.id }}/eliminar/">Eliminar</a>
+</div>
+<hr />
+{% endif %}
+<footer>
+Todos los derechos reservados por @Bedutravels
+</footer>

@@ -11,4 +11,7 @@ urlpatterns = [
     path("accounts/logout/", auth_views.LogoutView.as_view(next_page="/"),
         name="logout"),
     path('accounts/profile/', views.tours_profile, name="profile"),
+    path('tour/<int:tour_id>/', views.tour, name="tour"),
+    path('tour/<int:tour_id>/eliminar/', views.tour_eliminar,
+        name="tour_eliminar"),
 ]

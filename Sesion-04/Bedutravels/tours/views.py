@@ -28,3 +28,32 @@ def tours_profile(request):
     """ Atiende la petición GET /accounts/profile/ """
 
     return redirect("/")
+
+
+def tour(request, tour_id):
+    """ Atiende la petición GET /tour/tour_id/ """
+    tour = Tour.objects.get(id=tour_id)
+    usuario = request.user
+    es_editor = usuario.groups.filter(name="editores").exists()
+
+    contexto = {
+        "tour": tour,
+        "es_editor": es_editor,
+    }
+
+    return render(request, "tours/tour.html", contexto)
+
+
+def tour_eliminar(request, tour_id):
+    """ Atiende la petición GET /tour/tour_id/eliminar/ """
+
+    # Validando quien puede eliminar tours
+    usuario = request.user
+    es_editor = usuario.groups.filter(name="editores").exists()
+    if es_editor:
+        tour = Tour.objects.get(id=tour_id)
+        tour.delete()
+
+    return redirect("/")
+
+
