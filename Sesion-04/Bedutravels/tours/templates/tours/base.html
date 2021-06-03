@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>BeduTravels - 
+        {% block title %}{% endblock %}
+    </title>
+</head>
+<body>
+    <nav class="menu">
+        <a href="/">Inicio</a> | 
+        <a href="/zonas/">Zonas</a> |
+        <a href="/contacto/">Contacto</a> |
+        {% if user.is_authenticated %}
+            {{ user.username }} <a href="/accounts/logout/">Salir</a>
+        {% else %}
+            <a href="/accounts/login/">Entrar</a>
+        {% endif %}
+    </nav><!-- termina menu -->
+    <hr />
+    {% block contenido %}{% endblock %}
+    <hr />
+    <footer>
+        Todos los derechos reservados por @Bedutravels
+    </footer>
+</body>
+</html>

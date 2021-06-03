@@ -1,18 +1,17 @@
-<a href="/zonas/">Zonas</a> | 
-{% if user.is_authenticated %}
-    {{ user.username }} <a href="/accounts/logout/">Salir</a>
-{% else %}
-    <a href="/accounts/login/">Entrar</a>
-{% endif %}
-<hr />
-<h1>Página de inicio para mostrar la lista de Tours</h1>
-<hr />
-{% for tour in tours %}
-<div class="tour">
-    <a href="/tour/{{ tour.id }}"><h3>{{ tour.nombre }}</h3></a>
-    <ul>
-        <li>Origen: {{ tour.zonaSalida }}</li>
-        <li>Destino: {{ tour.zonaLlegada.nombre }}</li>
-    </ul>
-</div>
-{% endfor %}
+{% extends "tours/base.html" %}
+
+{% block title %}Inicio{% endblock %}
+
+{% block contenido %}
+    <h1>Página de inicio para mostrar la lista de Tours</h1>
+    <hr />
+    {% for tour in tours %}
+    <div class="tour">
+        <a href="/tour/{{ tour.id }}"><h3>{{ tour.nombre }}</h3></a>
+        <ul>
+            <li>Origen: {{ tour.zonaSalida }}</li>
+            <li>Destino: {{ tour.zonaLlegada.nombre }}</li>
+        </ul>
+    </div>
+    {% endfor %}
+{% endblock %}
