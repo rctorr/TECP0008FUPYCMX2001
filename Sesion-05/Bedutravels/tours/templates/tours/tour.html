@@ -1,0 +1,26 @@
+{% extends "tours/base.html" %}
+
+{% block title %}Detalle de Tour{% endblock %}
+
+{% block contenido %}
+    <h1>Detalle del tour {{ tour.id }}</h1>
+    <hr />
+    <div class="tour">
+        <h3>{{ tour.nombre }}</h3>
+        <p>{{ tour.descripcion }}</p>
+        <ul>
+            <li>Link: {{ tour.slug }}</li>
+            <li>Operador: {{ tour.operador }}</li>
+            <li>Tipo de tour: {{ tour.tipoDeTour }}</li>
+            <li>Origen: {{ tour.zonaSalida }}</li>
+            <li>Destino: {{ tour.zonaLlegada.nombre }}</li>
+            <li>Link a imágen: {{ tour.img }}</li>
+        </ul>
+    </div>
+    {% if es_editor %}
+    <hr />
+    <div class="menu-inferior">
+        <a href="/tour/{{ tour.id }}/eliminar/">Eliminar</a>
+    </div>
+    {% endif %}
+{% endblock %}
