@@ -15,8 +15,18 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from rest_framework import routers
+
+from tours import views
+
+# Agregando rutas para DjangoRest
+router = routers.DefaultRouter()
+router.register("users", views.UserViewSet)
+router.register("zonas", views.ZonaViewSet)
+router.register("tours", views.TourViewSet)
 
 urlpatterns = [
+    path('api/', include(router.urls)),
     path('', include("tours.urls")),
     path('wp-admin/', admin.site.urls),
 ]

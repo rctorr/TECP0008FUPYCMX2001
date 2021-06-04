@@ -1,7 +1,12 @@
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
+from rest_framework import viewsets
+
 from .models import Tour, Zona
+from .serializers import UserSerializer, ZonaSerializer, TourSerializer
+
 
 # Create your views here.
 def index(request):
@@ -56,4 +61,21 @@ def tour_eliminar(request, tour_id):
 
     return redirect("/")
 
+# Vistas relacionadas con Django Rest Framework
+class UserViewSet(viewsets.ModelViewSet):
+    """ Atiende las peticiones del API para la tabla/modelo User """
+    queryset = User.objects.all().order_by('id')
+    serializer_class = UserSerializer
+
+
+class ZonaViewSet(viewsets.ModelViewSet):
+    """ Atiende las peticiones del API para la tabla/modelo Zona """
+    queryset = Zona.objects.all().order_by('id')
+    serializer_class = ZonaSerializer
+
+
+class TourViewSet(viewsets.ModelViewSet):
+    """ Atiende las peticiones del API para la tabla/modelo Tour """
+    queryset = Tour.objects.all().order_by('id')
+    serializer_class = TourSerializer
 
