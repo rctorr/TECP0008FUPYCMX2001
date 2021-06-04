@@ -4,6 +4,8 @@ from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from rest_framework import viewsets
 
+import requests
+
 from .models import Tour, Zona
 from .serializers import UserSerializer, ZonaSerializer, TourSerializer
 
@@ -79,3 +81,21 @@ class TourViewSet(viewsets.ModelViewSet):
     queryset = Tour.objects.all().order_by('id')
     serializer_class = TourSerializer
 
+
+def nasa(request):
+    """ Atiende la petición de GET /nasa/ """
+    url = "https://api.nasa.gov/neo/rest/v1/neo/browse/"
+    params = {
+        "api_key": "EtSDBzChRyQL87tRvf6vAemUDFCJujscffspj9i5",
+    }
+    r = requests.get(url, params=params)
+    if r.status_code == 200:
+        datos = r.json()
+        asteroides = datos["near_earth_objects"]
+    else:
+        asteroides = []
+
+    contexto = {
+        "asteroides": asteroides,
+    }
+    return render(request, "tours/nasa.html", contexto)

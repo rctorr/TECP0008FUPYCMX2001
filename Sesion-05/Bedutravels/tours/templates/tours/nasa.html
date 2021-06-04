@@ -1,0 +1,18 @@
+{% extends "tours/base.html" %}
+
+{% block title %}Nasa{% endblock %}
+
+{% block contenido %}
+    <h1>Página para mostrar la lista de asteroides obtenidos de la API NASA</h1>
+    <hr />
+    {% for asteroide in asteroides %}
+    <div class="card">
+        <h3>{{ asteroide.name }}</h3>
+        <ul>
+            <li>Link: <a href="{{ asteroide.nasa_jpl_url }}">{{ asteroide.nasa_jpl_url }}</a></li>
+            <li>Id: {{ asteroide.id }}</li>
+            <li>Es peligroso: {{ asteroide.is_potentially_hazardous_asteroid }}</li>
+        </ul>
+    </div>
+    {% endfor %}
+{% endblock %}
