@@ -1,0 +1,18 @@
+{% extends "tours/base.html" %}
+
+{% block title %}Zonas{% endblock %}
+
+{% block contenido %}
+    <h1>Página para mostrar la lista de Zonas</h1>
+    <hr />
+    {% for zona in zonas %}
+    <div class="tour">
+        <h3>{{ zona.nombre }}</h3>
+        <p>Descripción: {{ zona.descripción }}</li>
+        <ul>
+            <li>Longitud: {{ zona.longitud }}</li>
+            <li>Latitud: {{ zona.latitud }}</li>
+        </ul>
+    </div>
+    {% endfor %}
+{% endblock %}
